@@ -157,3 +157,15 @@ body {
     max-height: 80px;
   }
 }
+
+ul {
+  display: flex;
+  flex-direction: row;
+}
+
+li {
+  margin: 15px;
+  padding: 10px;
+  list-style: none;
+  width: calc(25% - 51px);
+}
