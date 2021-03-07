@@ -10,6 +10,7 @@ html,
 body {
   font-family: "Source Sans Pro", -apple-system, system-ui, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: navajowhite;
 }
 
 .site-footer {
@@ -156,4 +157,20 @@ body {
   .navbar-brand > img {
     max-height: 80px;
   }
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+ul {
+  margin: 100px;
+}
+li {
+  color: red;
+  font-weight: 400;
+  text-align: left;
+  list-style: decimal;
+  line-height: 7rem;
+  cursor: pointer;
 }
