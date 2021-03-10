@@ -1,10 +1,51 @@
+
 function populateTodoList(todos) {
-  let list = document.getElementById("todo-list");
-  // Write your code to create todo list elements with completed and delete buttons here, all todos should display inside the "todo-list" element.
+  let list = document.getElementById('todo-list');//ul tag
+  
+  for (let todo of todos) {
+    
+    //Create list Elements
+    let listItem = document.createElement("li");
+    listItem.className = "list-group-item d-flex justify-content-between align-items-center";
+    listItem.innerText = todo.task;
+    list.appendChild(listItem);
+
+    //Create span Element
+    let spanEl = document.createElement("span");
+    spanEl.className = "badge bg-primary rounded-pill";
+    listItem.appendChild(spanEl);
+
+
+    //Create check and trash elements
+    let trashButton = document.createElement("i");
+    trashButton.className = "fa fa-trash";
+    let checkButton = document.createElement("i");
+    checkButton.className = "fa fa-check";
+    spanEl.append(checkButton,trashButton);
+    
+    //check button event listener 
+     checkButton.addEventListener("click", () => {
+       if (listItem.style.textDecoration === "none") {
+        listItem.style.textDecoration = "line-through"; 
+        todo.completed = true; 
+
+       } 
+       else {
+         listItem.style.textDecoration = "none";
+         todo.completed = false;         
+       }
+
+     });
+
+    //check button event listener 
+     trashButton.addEventListener("click", () => {
+       listItem.remove();
+     });
+
+  };
+
 }
 
-// These are the same todos that currently display in the HTML
-// You will want to remove the ones in the current HTML after you have created them using JavaScript
 let todos = [
   { task: "Wash the dishes", completed: false },
   { task: "Do the shopping", completed: false },
@@ -12,14 +53,24 @@ let todos = [
 
 populateTodoList(todos);
 
-// This function will take the value of the input field and add it as a new todo to the bottom of the todo list. These new todos will need the completed and delete buttons adding like normal.
 function addNewTodo(event) {
-  // The code below prevents the page from refreshing when we click the 'Add Todo' button.
   event.preventDefault();
-  // Write your code here... and remember to reset the input field to be blank after creating a todo!
+  let inputElement = document.querySelector("#todoInput");
+  
+  if (inputElement.value !== "") {
+    let newTodo = {};
+    newTodo.task = inputElement.value;
+    newTodo.completed = false;
+    todos.push(newTodo);
+    let addedTodo = todos.slice(todos.length - 1);
+    populateTodoList(addedTodo);
+    inputElement.value = "";
+  }
 }
+
 
 // Advanced challenge: Write a fucntion that checks the todos in the todo list and deletes the completed ones (we can check which ones are completed by seeing if they have the line-through styling applied or not).
 function deleteAllCompletedTodos() {
   // Write your code here...
+ 
 }
